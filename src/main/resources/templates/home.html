@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Getting Started: Serving Web Content </title>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+			integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+			crossorigin="anonymous"></script>
+		<script>
+			function sendNote(dateTimeString) {
+				console.log("submitting");
+				$.ajax("/", {
+					data: JSON.stringify(
+						{
+							"content": "Just not good enough...",
+							"watchedAt": dateTimeString
+						}),
+					contentType: 'application/json',
+					type: 'POST'
+				});
+				console.log("submitted");
+			}
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	</head>
+	<body>
+		<button onclick="sendNote(new Date().toISOString());">Now</button>
+		<button onclick="sendNote('2008-09-22T13:57:31.2311892-04:00');">Somewhere else</button>
+	</body>
+</html>
